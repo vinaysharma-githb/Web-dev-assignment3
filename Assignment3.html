@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinay's Portfolio </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --bg-dark: #1f2937;
+            --text-light: #f3f4f6;
+            --accent-glow: rgba(76, 175, 80, 0.5);
+            font-family: 'Inter', sans-serif;
+        }
+
+       
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .glow-border {
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 10px var(--accent-glow);
+            border-radius: 0.5rem;
+        }
+
+        
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5vw; 
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            background-color: rgba(31, 41, 55, 0.9);
+        }
+
+       
+        .nav-links {
+            display: flex;
+            gap: 1.5rem; 
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem 0;
+          
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            position: relative;
+            font-size: 1em;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease-in-out;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        #hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 5rem 5vw;
+            min-height: 80vh; 
+            justify-content: center;
+        }
+
+        .hero-title {
+            font-size: 4.5rem; 
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--primary-color);
+            text-stroke: 1px var(--primary-color);
+            transition: 0.3s;
+        }
+
+        .hero-title:hover {
+             -webkit-text-stroke: 0.5px var(--primary-color);
+             color: var(--primary-color);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--bg-dark);
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #66BB6A;
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 5px 20px var(--accent-glow);
+        }
+
+        
+        #projects-section {
+            padding: 5rem 5vw;
+        }
+
+        .project-grid {
+            display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background-color: #2c3e50;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-glow);
+        }
+
+        .project-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+
+        @keyframes pulse-scan {
+            0% {
+                box-shadow: 0 0 0 0 var(--accent-glow);
+                opacity: 0.7;
+            }
+            50% {
+                box-shadow: 0 0 15px 8px var(--accent-glow);
+                opacity: 1;
+            }
+            100% {
+                box-shadow: 0 0 0 0 var(--accent-glow);
+                opacity: 0.7;
+            }
+        }
+
+        .keyframe-banner {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--bg-dark);
+            animation: pulse-scan 2s infinite ease-in-out;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        @media (min-width: 640px) {
+            #hero-section {
+                padding: 7rem 10vw;
+            }
+        }
+
+        /
+        @media (min-width: 1024px) {
+            #header {
+                padding: 1.5rem 10vw;
+            }
+
+            .hero-title {
+                font-size: 6rem;
+            }
+
+            #hero-section {
+                height: 100vh;
+            }
+
+            
+            .project-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5vw;
+            border-top: 1px solid rgba(76, 175, 80, 0.2);
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        #about-section {
+             padding: 5rem 5vw;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             gap: 2rem;
+             text-align: center;
+        }
+
+        #about-section img {
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 0 20px var(--accent-glow);
+            max-width: 100%;
+            height: auto;
+        
+        
+          }
+       
+
+    </style>
+</head>
+<body>
+
+   
+    <header id="header" class="glow-border">
+        <div class="logo font-bold text-2xl text-white tracking-widest">
+            <span class="text-primary-color">Vinay</span> Sharma
+        </div>
+        <nav class="nav-links">
+            <a href="#hero-section" class="nav-link">Home</a>
+            <a href="#about-section" class="nav-link">About</a>
+            <a href="#projects-section" class="nav-link">Projects</a>
+            <a href="#skills-section" class="nav-link">Skills</a>
+            <a href="#contact-section" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    
+    <section id="hero-section">
+        <h1 class="hero-title">Vinay Portfolio</h1>      
+        <p class="hero-subtitle">I'm a Full stack developer.</p>
+        <button class="cta-button">View My Work</button> <pre>        
+    </section>
+                            
+   
+    <section id="about-section">
+        <h2 class="text-3xl font-semibold mb-4 text-center text-secondary-color">About me:</h2>
+        <img src="mygithub.png" alt="Profile Avatar" height="200" width="200">
+        <div class="max-w-3xl mx-auto text-lg space-y-4">
+            <p><strong>DESIGNATION:</strong> Vinay Sharma.I'm a full stack Web developer</p>
+            <p><strong>STATUS:</strong> Passionate about learning modern web development stacks, focusing on responsive design principles and creative project execution.</p>
+            <p><strong>MISSION:</strong> To build highly optimized, scalable, and interactive digital experiences. My core focus includes mastering advanced CSS layouts (Flexbox/Grid), front-end frameworks (React), and backend integration (Node.js).</p>
+        </div>
+    </section>
+
+   
+    <section id="projects-section">
+        <div class="keyframe-banner">
+            &lt; Optimal Projects  /&gt;
+        </div>
+        <h2 class="text-3xl font-semibold mb-8 text-center text-secondary-color">My Project's  </h2>
+
+        <div class="project-grid">
+         
+            <div class="project-card glow-border">
+                <h3>Daily calorie tracker</h3>
+                <p class="text-sm mb-4">
+                  A daily calorie tracker is a tool used to monitor food and drink intake to understand calorie consumption, which can help with weight management
+                </p>
+                <a href="https://github.com/vinaysharma-githb/calorie-tracker-01" target="_main" class="text-primary-color text-sm hover:underline">View Details &rarr;</a>
+            </div>
+
+         
+            <div class="project-card glow-border">
+                <h3>Library  data management</h3>
+                <p class="text-sm mb-4">a library data management system provides essential information for users and developers to understand, use, and contribute to the project</p>
+                <a href="https://github.com/vinaysharma-githb/Library-data-assignment" target="_main" class="text-primary-color text-sm hover:underline">View Details &rarr;</a>
+            </div>
+          
+        </div>
+    </section>
+
+   
+    <section id="skills-section" class="py-16 px-5vw">
+        <h2 class="text-3xl font-semibold mb-8 text-center text-secondary-color">My Skills</h2>
+        <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-4">
+            
+            <span class="skill-tag glow-border px-4 py-2 bg-gray-700 text-primary-color rounded-full text-sm font-medium transition duration-300 hover:bg-primary-color hover:text-bg-dark hover:shadow-lg">
+                JavaScript (ES6+)
+            </span>
+            <span class="skill-tag glow-border px-4 py-2 bg-gray-700 text-primary-color rounded-full text-sm font-medium transition duration-300 hover:bg-primary-color hover:text-bg-dark hover:shadow-lg">
+                CSS Grid / Flexbox
+            </span>
+            <span class="skill-tag glow-border px-4 py-2 bg-gray-700 text-primary-color rounded-full text-sm font-medium transition duration-300 hover:bg-primary-color hover:text-bg-dark hover:shadow-lg">
+                React.js
+            </span>
+            <span class="skill-tag glow-border px-4 py-2 bg-gray-700 text-primary-color rounded-full text-sm font-medium transition duration-300 hover:bg-primary-color hover:text-bg-dark hover:shadow-lg">
+                Python 
+            </span>
+            <span class="skill-tag glow-border px-4 py-2 bg-gray-700 text-primary-color rounded-full text-sm font-medium transition duration-300 hover:bg-primary-color hover:text-bg-dark hover:shadow-lg">
+                Node.js
+            </span>
+        </div>
+    </section>
+
+ 
+    <section id="contact-section" class="py-16 px-5vw">
+        <h2 class="text-3xl font-semibold mb-8 text-center text-secondary-color">Initiate Communication</h2>
+        <div class="max-w-lg mx-auto p-8 rounded-lg glow-border bg-[#2c3e50]">
+            <form class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-text-light mb-1">Name</label>
+                    <input type="text" id="name" name="name" class="w-full p-2 rounded-md bg-gray-700 border border-primary-color focus:ring-primary-color focus:border-primary-color" placeholder="Full Name">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-text-light mb-1">Email</label>
+                    <input type="email" id="email" name="email" class="w-full p-2 rounded-md bg-gray-700 border border-primary-color focus:ring-primary-color focus:border-primary-color" placeholder="Hello@domain.com">
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-text-light mb-1">Message</label>
+                    <textarea id="message" name="message" rows="4" class="w-full p-2 rounded-md bg-gray-700 border border-primary-color focus:ring-primary-color focus:border-primary-color" placeholder="Your message"></textarea>
+                </div>
+                <button type="submit" class="cta-button w-full">Send Signal</button>
+            </form>
+        </div>
+    </section>
+
+   
+    <footer id="footer">
+        <p>&copy; Vinay Sharma. All Rights Reserved.</p>
+        <div class="flex gap-4">
+            
+            <a href="https://github.com/vinaysharma-githb " target="_main" class="hover:text-primary-color transition duration-300">GitHub</a>
+        </div>
+    </footer>
+
+</body>
+</html>
